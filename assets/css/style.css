@@ -1,0 +1,42 @@
+:root {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --link-color: #6ab0f3;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header, footer {
+  padding: 1rem 2rem;
+  background-color: #1e1e1e;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
+
+nav a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.project-card {
+  background-color: #1f1f1f;
+  padding: 1rem;
+  border-radius: 8px;
+}
