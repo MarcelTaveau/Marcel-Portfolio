@@ -4,18 +4,10 @@
     --text-color: #e0e0e0;
     --link-color: #6ab0f3;
     --glass-bg: rgba(32,34,37,0.6);
-    --card-bg: rgba(12,14,16,0.60);
-    --card-hover-bg: rgba(12,14,16,0.66);
 
     /* border / rim alphas consolidated */
     --border-strong: rgba(255,255,255,0.14);
     --border-weak:   rgba(255,255,255,0.08);
-
-    /* aura colors */
-    --pill-aura-1: rgba(106,176,243,0.22);
-    --pill-aura-2: rgba(106,176,243,0.12);
-    --card-aura-1: rgba(255,255,255,0.20);
-    --card-aura-2: rgba(255,255,255,0.10);
 }
 
 /* Base */
@@ -41,12 +33,11 @@ body {
     transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Header & Footer */
-header, footer {
+/* Footer */
+footer {
     padding: 1rem 2rem;
     background-color: rgba(30,30,30,0.85);
     backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--border-weak);
 }
 
 /* Header layout */
@@ -57,6 +48,13 @@ header {
     justify-content: space-between;
     gap: 1rem;
     padding: 1rem 1.5rem;
+    background: linear-gradient(
+        to bottom,
+        rgba(30, 30, 30, 0.521) 0%,     /* more opaque at top */
+        rgba(30, 30, 30, 0) 50%,    /* current opacity in middle */
+        rgba(30,30,30,0) 100%     /* fade to transparent at bottom */
+    );
+    backdrop-filter: blur(15px);
 }
 
 /* Nav container (pill) centered inside header */
@@ -101,7 +99,9 @@ header nav ul li {
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
     border: 1px solid var(--border-weak);
-    background: transparent;
+    background: var(--glass-bg); /* default pill has glass background */
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
     color: var(--link-color);
     font-weight: 600;
     text-decoration: none;
@@ -161,10 +161,14 @@ header nav ul li {
     color: #aee6ff;
 }
 
-/* Ensure nav anchors explicitly inherit pill behavior and move up on hover */
+/* Nav anchors inside the pill container - override to be transparent */
 header nav a.pill {
     display: inline-flex;
     --pill-translate: 0;
+    border: none; /* remove individual pill borders */
+    background: transparent; /* override default glass background */
+    backdrop-filter: none; /* remove backdrop filter for nav anchors */
+    -webkit-backdrop-filter: none;
 }
 
 header nav a.pill:hover,
@@ -173,10 +177,20 @@ header nav a.pill:focus {
     transform: translateY(-2px);
     background: rgba(255,255,255,0.03);
     color: #aee6ff;
+    border: none; /* ensure no border appears on hover */
 }
 
 header nav a.pill:active {
     transform: translateY(-1px);
+}
+
+header nav a.pill:focus-visible,
+header nav a.pill:focus {
+    outline: none;
+    border: none; /* no border on focus for nav anchors */
+    box-shadow: 0 0 0 2px rgba(106,176,243,0.06); /* subtle focus ring instead */
+    background: rgba(255,255,255,0.03);
+    color: #aee6ff;
 }
 
 /* Language toggle is a pill pinned right, vertically centered */
@@ -186,6 +200,9 @@ header nav a.pill:active {
     right: 1.25rem;
     top: 50%;
     z-index: 3;
+    /* background: var(--glass-bg); <- REMOVED: inherited from .pill */
+    /* backdrop-filter: blur(20px) saturate(160%); <- REMOVED: inherited from .pill */
+    /* -webkit-backdrop-filter: blur(20px) saturate(160%); <- REMOVED: inherited from .pill */
     box-shadow: 0 1.5px 0 rgba(255,255,255,0.06) inset;
     -webkit-tap-highlight-color: transparent;
 }
@@ -251,17 +268,17 @@ header nav a.pill:active {
     }
 }
 
-/* Project card (darker, strong rim border, white-gray aura) */
+/* Project card (lighter, more glass-like with subtle aura) */
 .project-card {
-    background: linear-gradient(rgba(255,255,255,0.01), rgba(255,255,255,0.01)), var(--card-bg);
-    backdrop-filter: blur(14px) saturate(150%);
-    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    background: linear-gradient(rgba(255,255,255,0.04), rgba(255,255,255,0.02)), rgba(18,20,24,0.75);
+    backdrop-filter: blur(8px) saturate(60%);
+    -webkit-backdrop-filter: blur(8px) saturate(60%);
     border-radius: 12px;
     padding: 1rem;
     border: 1px solid var(--border-strong); /* stronger rim */
     box-shadow:
         0 10px 30px rgba(0,0,0,0.36),
-        0 1.5px 0 rgba(255,255,255,0.06) inset;
+        0 1.5px 0 rgba(255,255,255,0.08) inset;
     transition: transform 200ms ease, box-shadow 220ms ease, background 180ms ease;
     position: relative;
     overflow: hidden;
@@ -280,13 +297,13 @@ header nav a.pill:active {
     transform: translateY(-6px);
     box-shadow:
         0 14px 44px rgba(0,0,0,0.44),
-        0 1.5px 0 rgba(255,255,255,0.06) inset;
-    background: var(--card-hover-bg);
+        0 1.5px 0 rgba(255,255,255,0.08) inset;
+    background: linear-gradient(rgba(255,255,255,0.06), rgba(255,255,255,0.03)), rgba(18,20,24,0.80);
 }
 
 .project-card:active { transform: translateY(-3px); }
 
-/* Card aura (white / gray reflect) */
+/* Card aura (much subtler white/gray reflect) */
 .project-card::before {
     content: "";
     position: absolute;
@@ -294,13 +311,13 @@ header nav a.pill:active {
     pointer-events: none;
     background: radial-gradient(
         circle at var(--x) var(--y),
-        var(--card-aura-1) 0%,
-        var(--card-aura-2) 18%,
-        rgba(255,255,255,0.04) 40%,
-        transparent 60%
+        rgba(255,255,255,0.08) 0%,
+        rgba(255,255,255,0.04) 25%,
+        rgba(255,255,255,0.01) 50%,
+        transparent 75%
     );
-    mix-blend-mode: screen;
-    filter: blur(18px);
+    mix-blend-mode: normal;
+    filter: blur(20px);
     opacity: 0;
     transition: opacity 220ms ease, background-position 220ms ease;
 }
