@@ -13,15 +13,14 @@
         <h1>Marcel Taveau</h1>
         <nav>
             <ul>
-                <li><a href="index.html" data-en="Home" data-fr="Accueil">Home</a></li>
-                <li><a href="about.html" data-en="About" data-fr="À propos">About</a></li>
-                <li><a href="projects.html" data-en="Projects" data-fr="Projets">Projects</a></li>
-                <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+                <li><a class="pill" href="index.html" data-en="Home" data-fr="Accueil"></a></li>
+                <li><a class="pill" href="about.html" data-en="About" data-fr="À propos"></a></li>
+                <li><a class="pill" href="projects.html" data-en="Projects" data-fr="Projets"></a></li>
+                <li><a class="pill" href="contact.html" data-en="Contact" data-fr="Contact"></a></li>
             </ul>
         </nav>
-        <button id="lang-toggle">FR/EN</button>
+        <button class="pill" id="lang-toggle" aria-pressed="false">FR</button>
     </header>
-
 
     <main>
         <section class="intro">
@@ -31,7 +30,47 @@
             <p class="lang fr">Je suis Marcel Taveau, un étudiant passionné en développement de jeux vidéo.</p>
         </section>
 
+        <section class="glass">
+            <h2 class="lang en">Featured Projects</h2>
+            <h2 class="lang fr">Projets en vedette</h2>
+    
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="images/project1.png" alt="Project 1 screenshot">
+                    <h3 class="lang en">Project Title</h3>
+                    <h3 class="lang fr">Titre du projet</h3>
+                    <p class="lang en">Short description of project.</p>
+                    <p class="lang fr">Brève description du projet.</p>
+                    <a href="#">View on GitHub</a>
+                </div>
+                <div class="project-card">
+                    <img src="images/project1.png" alt="Project 1 screenshot">
+                    <h3 class="lang en">Project Title</h3>
+                    <h3 class="lang fr">Titre du projet</h3>
+                    <p class="lang en">Short description of project.</p>
+                    <p class="lang fr">Brève description du projet.</p>
+                    <a href="#">View on GitHub</a>
+                </div>
+                <div class="project-card">
+                    <img src="images/project1.png" alt="Project 1 screenshot">
+                    <h3 class="lang en">Project Title</h3>
+                    <h3 class="lang fr">Titre du projet</h3>
+                    <p class="lang en">Short description of project.</p>
+                    <p class="lang fr">Brève description du projet.</p>
+                    <a href="#">View on GitHub</a>
+                </div>
+                <div class="project-card">
+                    <img src="images/project1.png" alt="Project 1 screenshot">
+                    <h3 class="lang en">Project Title</h3>
+                    <h3 class="lang fr">Titre du projet</h3>
+                    <p class="lang en">Short description of project.</p>
+                    <p class="lang fr">Brève description du projet.</p>
+                    <a href="#">View on GitHub</a>
+                </div>
+            </div>
+        </section>
     </main>
+
 
     <footer>
         <p>&copy; 2025 Marcel Taveau</p>
