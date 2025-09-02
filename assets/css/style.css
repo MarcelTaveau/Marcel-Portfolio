@@ -1,13 +1,13 @@
-/* Root vars */
+/* Root variables */
 :root {
     --bg-color: #121212;
     --text-color: #e0e0e0;
     --link-color: #6ab0f3;
-    --glass-bg: rgba(32,34,37,0.6);
+    --glass-bg: rgba(32, 34, 37, 0.6);
 
-    /* border / rim alphas consolidated */
-    --border-strong: rgba(255,255,255,0.14);
-    --border-weak:   rgba(255,255,255,0.08);
+    /* border / rim alphas */
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --border-weak: rgba(255, 255, 255, 0.08);
 }
 
 /* Base */
@@ -21,14 +21,14 @@ body {
 
 /* Reusable glass panel */
 .glass {
-    background: linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.02)), var(--glass-bg);
+    background: linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02)), var(--glass-bg);
     backdrop-filter: blur(36px) saturate(190%) brightness(105%);
     -webkit-backdrop-filter: blur(36px) saturate(190%) brightness(105%);
     border-radius: 16px;
     border: 1px solid var(--border-strong);
     box-shadow:
-        0 6px 30px rgba(0,0,0,0.20),
-        0 1.5px 0 rgba(255,255,255,0.06) inset;
+        0 6px 30px rgba(0, 0, 0, 0.20),
+        0 1.5px 0 rgba(255, 255, 255, 0.06) inset;
     padding: 1.5rem;
     transition: background 0.4s ease, box-shadow 0.4s ease;
 }
@@ -36,207 +36,13 @@ body {
 /* Footer */
 footer {
     padding: 1rem 2rem;
-    background-color: rgba(30,30,30,0.85);
+    background-color: rgba(30, 30, 30, 0.85);
     backdrop-filter: blur(15px);
 }
 
-/* Header layout */
-header {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    background: linear-gradient(
-        to bottom,
-        rgba(30, 30, 30, 0.521) 0%,     /* more opaque at top */
-        rgba(30, 30, 30, 0) 50%,    /* current opacity in middle */
-        rgba(30,30,30,0) 100%     /* fade to transparent at bottom */
-    );
-    backdrop-filter: blur(15px);
-}
-
-/* Nav container (pill) centered inside header */
-header nav {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border-radius: 999px;
-    padding: 0.25rem;
-    border: 1px solid var(--border-weak);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.18);
-    overflow: visible;
-
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-
-    max-width: calc(100% - 8rem);
-    white-space: nowrap;
-}
-
-header nav ul {
-    display: flex;
-    gap: 0.25rem;
-    padding: 0.25rem;
-    margin: 0;
-    align-items: center;
-    list-style: none;
-}
-
-header nav ul li {
-    list-style: none;
-}
-
-/* Unified pill component (used by nav links and lang toggle) */
-.pill {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.45rem 0.9rem;
-    border-radius: 999px;
-    border: 1px solid var(--border-weak);
-    background: var(--glass-bg); /* default pill has glass background */
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    color: var(--link-color);
-    font-weight: 600;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: background 180ms ease, color 180ms ease, transform 120ms ease, box-shadow 160ms ease, border-color 160ms ease;
-    --x: 50%;
-    --y: 50%;
-    --pill-translate: 0; /* anchors use 0; toggle will override to -50% */
-    transform: translateY(var(--pill-translate));
-    will-change: transform, box-shadow;
-}
-
-/* Pill aura (blue) - reduced brightness to eliminate white dot artifacts */
-.pill::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(
-        circle at var(--x) var(--y),
-        rgba(106,176,243,0.12) 0%,
-        rgba(106,176,243,0.06) 25%,
-        rgba(106,176,243,0.02) 50%,
-        transparent 75%
-    );
-    mix-blend-mode: normal;
-    filter: blur(16px);
-    opacity: 0;
-    transition: opacity 220ms ease, background-position 220ms ease;
-}
-
-/* Pill interactions */
-.pill.is-hovered::before,
-.pill:hover::before,
-.pill:focus::before { opacity: 1; }
-
-.pill:hover,
-.pill.is-hovered,
-.pill:focus {
-    transform: translateY(calc(var(--pill-translate) - 2px));
-    background: rgba(255,255,255,0.03);
-    color: #aee6ff;
-}
-
-.pill:active { transform: translateY(calc(var(--pill-translate) - 1px)); }
-
-.pill:focus-visible,
-.pill:focus {
-    outline: none;
-    border-color: rgba(255,255,255,0.16);
-    box-shadow:
-        0 8px 30px rgba(106,176,243,0.08),
-        0 0 0 4px rgba(106,176,243,0.06);
-    background: rgba(255,255,255,0.03);
-    color: #aee6ff;
-}
-
-/* Nav anchors inside the pill container - override to be transparent */
-header nav a.pill {
-    display: inline-flex;
-    --pill-translate: 0;
-    border: none; /* remove individual pill borders */
-    background: transparent; /* override default glass background */
-    backdrop-filter: none; /* remove backdrop filter for nav anchors */
-    -webkit-backdrop-filter: none;
-}
-
-header nav a.pill:hover,
-header nav a.pill.is-hovered,
-header nav a.pill:focus {
-    transform: translateY(-2px);
-    background: rgba(255,255,255,0.03);
-    color: #aee6ff;
-    border: none; /* ensure no border appears on hover */
-}
-
-header nav a.pill:active {
-    transform: translateY(-1px);
-}
-
-header nav a.pill:focus-visible,
-header nav a.pill:focus {
-    outline: none;
-    border: none; /* no border on focus for nav anchors */
-    box-shadow: 0 0 0 2px rgba(106,176,243,0.06); /* subtle focus ring instead */
-    background: rgba(255,255,255,0.03);
-    color: #aee6ff;
-}
-
-/* Language toggle is a pill pinned right, vertically centered */
-#lang-toggle {
-    --pill-translate: -50%;
-    position: absolute;
-    right: 1.25rem;
-    top: 50%;
-    z-index: 3;
-    /* background: var(--glass-bg); <- REMOVED: inherited from .pill */
-    /* backdrop-filter: blur(20px) saturate(160%); <- REMOVED: inherited from .pill */
-    /* -webkit-backdrop-filter: blur(20px) saturate(160%); <- REMOVED: inherited from .pill */
-    box-shadow: 0 1.5px 0 rgba(255,255,255,0.06) inset;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Responsive tweaks for header/nav */
-@media (max-width: 720px) {
-    header {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 1rem;
-        padding: 0.75rem 1rem;
-    }
-
-    header nav {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        max-width: calc(100% - 9.5rem);
-        white-space: nowrap;
-    }
-
-    #lang-toggle {
-        right: 0.75rem;
-        padding: 0.32rem 0.7rem;
-        font-size: 0.95rem;
-    }
-
-    header h1 {
-        margin-left: 0.5rem;
-        font-size: 1.05rem;
-    }
-}
+/* ========================================
+   PROJECT COMPONENTS
+   ======================================== */
 
 /* Project grid */
 .project-grid {
@@ -268,17 +74,17 @@ header nav a.pill:focus {
     }
 }
 
-/* Project card (lighter, more glass-like with subtle aura) */
+/* Project card */
 .project-card {
-    background: linear-gradient(rgba(255,255,255,0.04), rgba(255,255,255,0.02)), rgba(18,20,24,0.75);
+    background: linear-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)), rgba(18, 20, 24, 0.75);
     backdrop-filter: blur(8px) saturate(60%);
     -webkit-backdrop-filter: blur(8px) saturate(60%);
     border-radius: 12px;
     padding: 1rem;
     border: 1px solid var(--border-strong); /* stronger rim */
     box-shadow:
-        0 10px 30px rgba(0,0,0,0.36),
-        0 1.5px 0 rgba(255,255,255,0.08) inset;
+        0 10px 30px rgba(0, 0, 0, 0.36),
+        0 1.5px 0 rgba(255, 255, 255, 0.08) inset;
     transition: transform 200ms ease, box-shadow 220ms ease, background 180ms ease;
     position: relative;
     overflow: hidden;
@@ -296,44 +102,55 @@ header nav a.pill:focus {
 .project-card:focus {
     transform: translateY(-6px);
     box-shadow:
-        0 14px 44px rgba(0,0,0,0.44),
-        0 1.5px 0 rgba(255,255,255,0.08) inset;
-    background: linear-gradient(rgba(255,255,255,0.06), rgba(255,255,255,0.03)), rgba(18,20,24,0.80);
+        0 14px 44px rgba(0, 0, 0, 0.44),
+        0 1.5px 0 rgba(255, 255, 255, 0.08) inset;
+    background: linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)), rgba(18, 20, 24, 0.80);
 }
 
-.project-card:active { transform: translateY(-3px); }
+.project-card:active {
+    transform: translateY(-3px);
+}
 
-/* Card aura (much subtler white/gray reflect) */
+/* Card aura (white/gray reflect) */
 .project-card::before {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: radial-gradient(
-        circle at var(--x) var(--y),
-        rgba(255,255,255,0.08) 0%,
-        rgba(255,255,255,0.04) 25%,
-        rgba(255,255,255,0.01) 50%,
-        transparent 75%
-    );
+    background: radial-gradient(circle at var(--x) var(--y),
+            rgba(255, 255, 255, 0.08) 0%,
+            rgba(255, 255, 255, 0.04) 25%,
+            rgba(255, 255, 255, 0.01) 50%,
+            transparent 75%);
     mix-blend-mode: normal;
     filter: blur(20px);
     opacity: 0;
     transition: opacity 220ms ease, background-position 220ms ease;
 }
 
+/* Show aura */
 .project-card.is-hovered::before,
 .project-card:hover::before,
-.project-card:focus::before { opacity: 1; }
+.project-card:focus::before {
+    opacity: 1;
+}
 
 /* Ensure content sits above aura */
-.project-card > * { position: relative; z-index: 1; }
+.project-card>* {
+    position: relative;
+    z-index: 1;
+}
 
-/* Project card links match nav highlight */
+/* Project card links match nav highlight colour */
 .project-card a {
     color: #aee6ff;
     text-decoration: none;
     font-weight: 600;
 }
+
+/* Link hover/active */
 .project-card a:hover,
-.project-card a:focus { color: #dff7ff; text-decoration: underline; }
+.project-card a:focus {
+    color: #dff7ff;
+    text-decoration: underline;
+}
