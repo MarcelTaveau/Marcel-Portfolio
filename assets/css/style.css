@@ -10,6 +10,11 @@
     --border-weak: rgba(255, 255, 255, 0.08);
 }
 
+/* HTML */
+html {
+    scroll-behavior: smooth;
+}
+
 /* Base */
 body {
     background: linear-gradient(135deg, #0e2238, #0f1a34, #012424);
@@ -31,6 +36,7 @@ body {
         0 1.5px 0 rgba(255, 255, 255, 0.06) inset;
     padding: 1.5rem;
     transition: background 0.4s ease, box-shadow 0.4s ease;
+    margin: 1rem;
 }
 
 /* Footer */
