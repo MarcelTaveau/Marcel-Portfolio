@@ -26,7 +26,7 @@ header nav ul {
     gap: 0.25rem;
     padding: 0.5rem;
     margin: 0;
-    align-items: center;
+    align-items: flex-end;
     list-style: none;
 }
 
@@ -36,7 +36,8 @@ header nav ul {
 
 /* Unified pill component (used by the individual nav links themselves and lang toggle) */
 .pill {
-    background: var(--glass-bg); /* default pill has glass background */
+    background: var(--glass-bg);
+    /* default pill has glass background */
     backdrop-filter: blur(20px) saturate(160%);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
     border-radius: 999px;
@@ -107,6 +108,17 @@ header nav ul {
     color: #aee6ff;
 }
 
+/* Button toggle is a pill. Used for lang toggle and hamburger menu design */
+.button-toggle {
+    --pill-translate: -50%;
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    z-index: 3;
+    box-shadow: 0 1.5px 0 rgba(255, 255, 255, 0.06) inset;
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* ========================================
    NAV-SPECIFIC PILL OVERRIDES
    ======================================== */
@@ -116,11 +128,8 @@ header nav a.pill {
     display: inline-flex;
     --pill-translate: 0;
     border: none;
-    /* remove individual pill borders */
     background: transparent;
-    /* override default glass background */
     backdrop-filter: none;
-    /* remove backdrop filter for nav anchors */
     -webkit-backdrop-filter: none;
 }
 
@@ -149,18 +158,119 @@ header nav a.pill:focus {
     color: #aee6ff;
 }
 
+/* Hide hamburger menu when not needed */
+#nav-toggle {
+    display: none;
+}
+
 /* ========================================
    RESPONSIVE DESIGN
    ======================================== */
+@media (max-width: 850px) {
+    /* ===== HAMBURGER BUTTON STYLES ===== */
 
-/* Responsive tweaks for nav */
-@media (max-width: 720px) {
+    /* show hamburger menu */
+    #nav-toggle {
+        display: inline-flex;
+    }
+
+    /* hides nav by default on small screens */
     header nav {
+        display: none;
+    }
+
+    /* hamburger icon lines */
+    .button-toggle .hamburger {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 18px;
+    }
+
+    /* hamburger icon lines fade to x and vice versa */
+    .button-toggle .hamburger span {
+        display: block;
+        height: 2px;
+        background: currentColor;
+        border-radius: 2px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Animate hamburger to X when menu is open */
+    header.nav-open .button-toggle .hamburger span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+        /* top line rotates down-right */
+    }
+    header.nav-open .button-toggle .hamburger span:nth-child(2) {
+        opacity: 0;
+        /* middle line fades out */
+    }
+    header.nav-open .button-toggle .hamburger span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+        /* bottom line rotates up-right */
+    }
+
+    /* Actual nav menu styles */
+    header.nav-open nav {
+        display: block;
         position: absolute;
-        left: 50%;
+        left: 100%;
+        top: 100%;
+        transform: translate(-115%, 8px);
+        width: calc(100% - 2rem);
+        max-width: 120px;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 16px;
+        background: var(--glass-bg);
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.36);
+    }
+
+    /* blur and darken background when nav is open */
+    body.nav-open::before {
+        content: "";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 1;
+    }
+
+    /* stack nav items vertically in mobile menu */
+    header.nav-open nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0;
+    }
+
+    header.nav-open nav ul li {
+        margin: 0;
+    }
+
+    /* include lang toggle in mobile menu */
+    header.nav-open #lang-toggle {
+        display: inline-block;
+        position: absolute;
+        right: 6.75rem;
         top: 50%;
-        transform: translate(-50%, -50%);
-        max-width: calc(100% - 9.5rem);
-        white-space: nowrap;
+        align-self: center;
+    }
+
+    /* hide lang toggle from corner on mobile (unless menu is open) */
+    #lang-toggle {
+        display: none;
+    }
+
+    /* Ensure header appears above the backdrop blur overlay */
+    header.nav-open {
+        position: relative;
+        z-index: 100;
+        /* higher than the overlay's z-index */
     }
 }

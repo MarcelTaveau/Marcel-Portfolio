@@ -21,35 +21,18 @@ header {
     backdrop-filter: blur(15px);
 }
 
-/* Language toggle is a pill pinned right, vertically centered */
-#lang-toggle {
-    --pill-translate: -50%;
-    position: absolute;
-    right: 1.25rem;
-    top: 50%;
-    z-index: 3;
-    box-shadow: 0 1.5px 0 rgba(255, 255, 255, 0.06) inset;
-    -webkit-tap-highlight-color: transparent;
-}
-
 /* ========================================
    RESPONSIVE DESIGN
    ======================================== */
 
 /* Responsive tweaks for header */
-@media (max-width: 720px) {
+@media (max-width: 850px) {
     header {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         gap: 1rem;
         padding: 0.75rem 1rem;
-    }
-
-    #lang-toggle {
-        right: 0.75rem;
-        padding: 0.32rem 0.7rem;
-        font-size: 0.95rem;
     }
 
     header h1 {

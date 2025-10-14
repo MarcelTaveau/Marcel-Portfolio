@@ -1,7 +1,13 @@
 (() => {
+    // ======================
     // Language toggle
+    // ======================
+
+    // Elements with class "lang" and either "en" or "fr" will be shown/hidden based on the current language
+    // Navigation links have data attributes for both languages
+    // The button-toggle button switches languages
     const links = document.querySelectorAll('nav a');
-    const toggleButton = document.getElementById('lang-toggle');
+    const langToggle = document.getElementById('lang-toggle');
     let isFrench = (navigator.language || navigator.userLanguage || '').startsWith('fr');
 
     function updateLanguageDisplay() {
@@ -15,32 +21,39 @@
         });
 
         // show the opposite language on the button (if site is English -> show "FR", and vice-versa)
-        if (toggleButton) {
-            toggleButton.textContent = isFrench ? 'EN' : 'FR';
-            toggleButton.setAttribute('aria-label', isFrench ? 'Switch to English' : 'Passer en français');
-            toggleButton.setAttribute('aria-pressed', String(isFrench)); // optional for assistive tech
+        if (langToggle) {
+            langToggle.textContent = isFrench ? 'EN' : 'FR';
+            langToggle.setAttribute('aria-label', isFrench ? 'Switch to English' : 'Passer en français');
+            langToggle.setAttribute('aria-pressed', String(isFrench)); // optional for assistive tech
         }
     }
 
+    // Initial display update
     updateLanguageDisplay();
 
-    if (toggleButton) {
-        toggleButton.addEventListener('click', () => {
+    // Toggle language on button click
+    if (langToggle) {
+        langToggle.addEventListener('click', () => {
             isFrench = !isFrench;
+            // Call the update function again to refresh the display
             updateLanguageDisplay();
 
             // remove focus so the button doesn't remain visually "pressed"
             // but we still preserve keyboard focus when the user tabs to it (focus-visible)
-            toggleButton.blur();
+            langToggle.blur();
         });
 
-        // optional: ensure touch/pointer interactions don't leave focus stuck
-        toggleButton.addEventListener('pointerup', () => toggleButton.blur());
-        toggleButton.addEventListener('touchend', () => toggleButton.blur());
+        // ensure touch/pointer interactions don't leave focus stuck
+        langToggle.addEventListener('pointerup', () => langToggle.blur());
+        langToggle.addEventListener('touchend', () => langToggle.blur());
     }
 
-    // Cursor-aura (smoothed) for project cards, nav pills and the language toggle
-    const auraTargets = document.querySelectorAll('.project-card, header nav a, #lang-toggle');
+    // ======================
+    // Cursor aura effect
+    // ======================
+
+    // Cursor-aura (smoothed) for project cards, nav pills and the button toggle
+    const auraTargets = document.querySelectorAll('.project-card, header nav a, .button-toggle');
 
     const getClientXY = e => {
         if (e.touches && e.touches[0]) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
@@ -102,6 +115,39 @@
     }
 
     auraTargets.forEach(initAura);
+
+    // ======================
+    // Mobile nav toggle
+    // ======================
+
+    // Toggle the "nav-open" class on the header when the nav toggle button is clicked
+    // This class controls the visibility of the nav menu on small screens
+    const navToggle = document.getElementById('nav-toggle');
+    const headerEl = document.querySelector('header');
+    const bodyEl = document.body;
+
+    if (navToggle && headerEl) {
+        navToggle.addEventListener('click', () => {
+            const open = headerEl.classList.toggle('nav-open');
+            bodyEl.classList.toggle('nav-open', open); // for backdrop effect
+            navToggle.setAttribute('aria-expanded', String(open));
+        });
+
+        // close menu when a nav link is clicked
+        const navEl = document.querySelector('header nav');
+        if (navEl) {
+            navEl.addEventListener('click', (e) => {
+                if (e.target && e.target.tagName === 'A') {
+                    headerEl.classList.remove('nav-open');
+                    bodyEl.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    navToggle.blur();
+                }
+            });
+        }
+        navToggle.addEventListener('pointerup', () => navToggle.blur());
+        navToggle.addEventListener('touchend', () => navToggle.blur());
+    }
 })();
 
 

@@ -25,7 +25,10 @@
                 <li><a class="pill" href="#contact" data-en="Contact" data-fr="Contact"></a></li>
             </ul>
         </nav>
-        <button class="pill" id="lang-toggle" aria-pressed="false">FR</button>
+        <button class="pill button-toggle" id="lang-toggle" aria-pressed="false">FR</button>
+        <button class="pill button-toggle" id="nav-toggle" aria-expanded="false" aria-label="Open menu">
+            <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
     </header>
 
     <!--Main Content-->
@@ -33,51 +36,92 @@
         <section id="intro" class="intro">
             <h2 class="lang en" style="text-align: center;">Welcome to my portfolio!</h2>
             <h2 class="lang fr" style="text-align: center;">Bienvenue sur mon portfolio !</h2>
-            <p class="lang en" style="padding: 2%">I'm Marcel Taveau, a passionate 3rd year video game programming student from LaSalle College in Montreal, Quebec.
-            I love creating interactive narrative experiences that blend great storytelling with engaging gameplay mechanics. I'm at my best when working in teams and collaborating with artists and designers to bring ideas to life.<br><br>
-            On this portfolio, you'll find a selection of some of my projects that showcase my skills and interests in game development.</p>
-            <p class="lang fr" style="padding: 2%;">Je suis Marcel Taveau, un étudiant passionné en 3ème année de programmation en jeux vidéo au Collège LaSalle à Montréal, Québec.
-            J'adore créer des expériences narratives interactives qui combinent une trame narrative de qualité à des mécaniques de jeu engageantes. Je suis à mon meilleur lorsque je travaille en équipe et que je collabore avec des artistes et des designers pour donner vie aux idées.<br><br>
-            Sur ce portfolio, vous trouverez une sélection de certains de mes projets qui mettent en valeur mes compétences et mes intérêts dans le développement de jeux.</p>
+            <p class="lang en" style="padding: 2%">I'm Marcel Taveau, a passionate 3rd year video game programming
+                student from LaSalle College in Montreal, Quebec.
+                I love creating interactive narrative experiences that blend great storytelling with engaging gameplay
+                mechanics. I'm at my best when working in teams and collaborating with artists and designers to bring
+                ideas to life.<br><br>
+                On this portfolio, you'll find a selection of some of my projects that showcase my skills and interests
+                in game development.</p>
+            <p class="lang fr" style="padding: 2%;">Je suis Marcel Taveau, un étudiant passionné en 3ème année de
+                programmation en jeux vidéo au Collège LaSalle à Montréal, Québec.
+                J'adore créer des expériences narratives interactives qui combinent une trame narrative de qualité à des
+                mécaniques de jeu engageantes. Je suis à mon meilleur lorsque je travaille en équipe et que je collabore
+                avec des artistes et des designers pour donner vie aux idées.<br><br>
+                Sur ce portfolio, vous trouverez une sélection de certains de mes projets qui mettent en valeur mes
+                compétences et mes intérêts dans le développement de jeux.</p>
         </section>
 
-        <section id="projects"class="glass">
+        <section id="projects" class="glass">
             <h2 class="lang en">Featured Projects</h2>
             <h2 class="lang fr">Projets en vedette</h2>
-    
+
             <div class="project-grid">
                 <div class="project-card">
-                    <img src="https://img.itch.zone/aW1nLzIzMjYyODIwLnBuZw==/315x250%23c/j%2BpAjV.png" style="border-radius: 2%;" alt="Stems from Nothing thumbnail">
+                    <img src="https://img.itch.zone/aW1nLzIzMjYyODIwLnBuZw==/315x250%23c/j%2BpAjV.png"
+                        style="border-radius: 2%;" alt="Stems from Nothing thumbnail">
                     <h3 class="lang en">Stems From Nothing</h3>
                     <h3 class="lang fr">Stems From Nothing</h3>
-                    <p class="lang en">Stems From Nothing was a submission to the Creative Jam 2025 hosted by Poly Games in collaboration with Ubisoft, Université Polytechnique de Montréal, and NAD UQAC.<br><br>
-                    Dive into the musical fantasy of a song writer, keep collecting your notes while dodging obstacles to form your melody.<br><br>
-                    For my second game jam (lasting 46 hours), I worked as a gameplay programmer, focusing on the player's movement following the mouse cursor with the appropriate animations.
-                    In collaboration with the artists on our team, I also worked on the game's overall feel and polish with the addition of the startup movie and the main and pause menus, ensuring a smooth and enjoyable first impression for players.<br><br>
-                    When working with the other programmers, we found it best to each work on our own mechanics independently with basic placeholder shapes. Once refined, we merged our work together, which resulted in a much more efficient development process. Divide and conquer!</p>
-                    <p class="lang fr">Stems From Nothing a été une soumission au Creative Jam 2025 organisé par Poly Games en collaboration avec Ubisoft, l'Université Polytechnique de Montréal et NAD UQAC.<br><br>
-                    Plonge dans la fantaisie musicale d'un auteur-compositeur, continue de récolter tes notes tout en évitant les obstacles pour créer ta mélodie.<br><br>
-                    Pour mon deuxième game jam (durant 46 heures), j'ai travaillé en tant que programmeur gameplay, me concentrant sur le mouvement du joueur suivant le curseur de la souris avec les animations appropriées.
-                    En collaboration avec les artistes de notre équipe, j'ai également travaillé sur l'ambiance générale et le polissage du jeu avec l'ajout du film de démarrage et du menu principal et de pause, garantissant une première impression fluide et agréable pour les joueurs.<br><br>
-                    Lorsque j'ai travaillé avec les autres programmeurs, nous avons constaté qu'il était préférable de travailler chacun sur nos propres mécaniques de manière indépendante avec des formes simples temporairement. Une fois raffinées, nous avons fusionné nos travaux, cela rendant un processus de développement beaucoup plus efficace. Diviser pour mieux régner !</p>
+                    <p class="lang en">Stems From Nothing was a submission to the Creative Jam 2025 hosted by Poly Games
+                        in collaboration with Ubisoft, Université Polytechnique de Montréal, and NAD UQAC.<br><br>
+                        Dive into the musical fantasy of a song writer, keep collecting your notes while dodging
+                        obstacles to form your melody.<br><br>
+                        For my second game jam (lasting 46 hours), I worked as a gameplay programmer, focusing on the
+                        player's movement following the mouse cursor with the appropriate animations.
+                        In collaboration with the artists on our team, I also worked on the game's overall feel and
+                        polish with the addition of the startup movie and the main and pause menus, ensuring a smooth
+                        and enjoyable first impression for players.<br><br>
+                        When working with the other programmers, we found it best to each work on our own mechanics
+                        independently with basic placeholder shapes. Once refined, we merged our work together, which
+                        resulted in a much more efficient development process. Divide and conquer!</p>
+                    <p class="lang fr">Stems From Nothing a été une soumission au Creative Jam 2025 organisé par Poly
+                        Games en collaboration avec Ubisoft, l'Université Polytechnique de Montréal et NAD UQAC.<br><br>
+                        Plonge dans la fantaisie musicale d'un auteur-compositeur, continue de récolter tes notes tout
+                        en évitant les obstacles pour créer ta mélodie.<br><br>
+                        Pour mon deuxième game jam (durant 46 heures), j'ai travaillé en tant que programmeur gameplay,
+                        me concentrant sur le mouvement du joueur suivant le curseur de la souris avec les animations
+                        appropriées.
+                        En collaboration avec les artistes de notre équipe, j'ai également travaillé sur l'ambiance
+                        générale et le polissage du jeu avec l'ajout du film de démarrage et du menu principal et de
+                        pause, garantissant une première impression fluide et agréable pour les joueurs.<br><br>
+                        Lorsque j'ai travaillé avec les autres programmeurs, nous avons constaté qu'il était préférable
+                        de travailler chacun sur nos propres mécaniques de manière indépendante avec des formes simples
+                        temporairement. Une fois raffinées, nous avons fusionné nos travaux, cela rendant un processus
+                        de développement beaucoup plus efficace. Diviser pour mieux régner !</p>
                     <a href="https://roxymarcoux.itch.io/stems-from-nothing" class="lang en">View on itch.io</a>
                     <a href="https://roxymarcoux.itch.io/stems-from-nothing" class="lang fr">Voir sur itch.io</a>
                 </div>
                 <div class="project-card">
-                    <img src="https://img.itch.zone/aW1nLzIwNzMzOTExLnBuZw==/315x250%23c/0AUXyf.png" style="border-radius: 2%;" alt="Self Reflection thumbnail">
+                    <img src="https://img.itch.zone/aW1nLzIwNzMzOTExLnBuZw==/315x250%23c/0AUXyf.png"
+                        style="border-radius: 2%;" alt="Self Reflection thumbnail">
                     <h3 class="lang en">Self Reflection</h3>
                     <h3 class="lang fr">Self Reflection</h3>
                     <p class="lang en">Self Reflection placed 3rd in the 2025 Behaviour Interactive Game Jam.<br><br>
-                    Face yourself before it's too late in this psychological hide and seek.<br><br>
-                    For this project lasting 48 hours, I challenged myself by focusing on the game and level design aspects. The goal was to create an immersive narrative experience that would engage players on a deeper level. Respecting the theme of "if you can't see it, it doesn't exist", 
-                    mirrors were used to create a sense of depth and reflection, both literally and metaphorically. By incorporating reflective surfaces throughout the map, I aimed to enhance the player's connection to the protagonist's internal struggles as he lives through his day.<br><br>
-                    As this was my first game jam, I learned a lot about the development process and the importance of iteration. It was also my first time working with professional artists, which was an invaluable experience and taught me a lot about collaboration and communication.</p>
-                    <p class="lang fr">Self Reflection a obtenu la 3ème place au Game Jam de Behaviour Interactive 2025.<br><br>
-                    Affronte-toi avant qu'il ne soit trop tard dans ce cache-cache psychologique.<br><br>
-                    Pour ce projet d'une durée de 48 heures, je me suis lancé le défi de me concentrer sur les aspects de conception de jeu et de niveau. L'objectif était de créer une expérience narrative immersive qui engagerait les joueurs à un niveau plus profond.
-                    En respectant le thème de "if you can't see it, it doesn't exist", des miroirs ont été utilisés pour créer un sens de profondeur et de réflexion, à la fois littéralement et métaphoriquement. En incorporant des surfaces réfléchissantes dans toute la map, 
-                    j'ai visé à renforcer la connexion du joueur aux défis internes du protagoniste alors qu'il vit sa journée.<br><br>
-                    Étant donné que c'était mon premier game jam, j'ai beaucoup appris sur le processus de développement et l'importance de l'itération. C'était aussi ma première fois en travaillant avec des artistes professionnels, ce qui a été une expérience enrichissante et m'a beaucoup appris sur la collaboration et la communication.</p>
+                        Face yourself before it's too late in this psychological hide and seek.<br><br>
+                        For this project lasting 48 hours, I challenged myself by focusing on the game and level design
+                        aspects. The goal was to create an immersive narrative experience that would engage players on a
+                        deeper level. Respecting the theme of "if you can't see it, it doesn't exist",
+                        mirrors were used to create a sense of depth and reflection, both literally and metaphorically.
+                        By incorporating reflective surfaces throughout the map, I aimed to enhance the player's
+                        connection to the protagonist's internal struggles as he lives through his day.<br><br>
+                        As this was my first game jam, I learned a lot about the development process and the importance
+                        of iteration. It was also my first time working with professional artists, which was an
+                        invaluable experience and taught me a lot about collaboration and communication.</p>
+                    <p class="lang fr">Self Reflection a obtenu la 3ème place au Game Jam de Behaviour Interactive
+                        2025.<br><br>
+                        Affronte-toi avant qu'il ne soit trop tard dans ce cache-cache psychologique.<br><br>
+                        Pour ce projet d'une durée de 48 heures, je me suis lancé le défi de me concentrer sur les
+                        aspects de conception de jeu et de niveau. L'objectif était de créer une expérience narrative
+                        immersive qui engagerait les joueurs à un niveau plus profond.
+                        En respectant le thème de "if you can't see it, it doesn't exist", des miroirs ont été utilisés
+                        pour créer un sens de profondeur et de réflexion, à la fois littéralement et métaphoriquement.
+                        En incorporant des surfaces réfléchissantes dans toute la map,
+                        j'ai visé à renforcer la connexion du joueur aux défis internes du protagoniste alors qu'il vit
+                        sa journée.<br><br>
+                        Étant donné que c'était mon premier game jam, j'ai beaucoup appris sur le processus de
+                        développement et l'importance de l'itération. C'était aussi ma première fois en travaillant avec
+                        des artistes professionnels, ce qui a été une expérience enrichissante et m'a beaucoup appris
+                        sur la collaboration et la communication.</p>
                     <a href="https://oneafter68.itch.io/self-reflection" class="lang en">View on itch.io</a>
                     <a href="https://oneafter68.itch.io/self-reflection" class="lang fr">Voir sur itch.io</a>
                 </div>
